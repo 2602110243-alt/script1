@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+    body {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 10px 40px; /* ⚠️ 오타를 완전히 지워두었습니다! */          
+    }
+    .header-bar {
+        display: flex;
+        align-items: baseline; 
+        gap: 30px;             
+        margin-bottom: 40px;   
+    }
+    /* 📦 스케치 속 두 박스를 좌우로 나란히 묶어주는 정렬 바구니 */
+        .community-container {
+            display: flex;       /* 👈 좌우로 나란히 배치 */
+            gap: 40px;           /* 👈 인기글 박스와 최신글 박스 사이의 간격 */
+            width: 100%;
+        }
+
+    /* ◽ 인기글, 최신글 개별 회색 박스 디자인 */
+.board-box {
+        background-color: #b0b5bc; /* 스케치에 나온 밝은 회색 배경 */
+        color: #000000;            /* 글씨는 검은색으로 또렷하게 */
+            
+        flex: 1;                   /* ⭐ 50:50 반반씩 똑같이 너비 나눠 갖기 */
+        min-height: 800px;         /* 🚀 아래로 길게 늘려주는 최소 높이 설정 */
+        border-radius: 12px;       /* 모서리 부드럽게 깎기 */
+        padding: 40px;
+        box-sizing: border-box;
+
+        /* 💡 [여기서부터 수정] 한 줄로 꼬이는 정렬을 위아래 탑 쌓기 구조로 완전히 바꿉니다! */
+        display: flex;
+        flex-direction: column;     /* 👈 자식들을 가로가 아니라 '세로(위에서 아래)'로 쌓아라! */
+        justify-content: flex-start;/* 👈 자식들을 무조건 박스의 '맨 위(상단)'로 밀어 올려라! */
+        align-items: stretch;       /* 👈 글 목록 줄들이 가로로 넓게 쫙 퍼지게 만들어라! */
+    }
+/* 박스 안의 제목 스타일 */
+        .board-title {
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;         
+            margin-bottom: 25px;        
+            border-bottom: 2px solid #1a1b1e; /* 제목 밑에 깔끔한 검은색 구분선 */
+            padding-bottom: 15px;
+        }
+
+        /* 📝 게시글 한 줄 한 줄의 스타일 (예시) */
+        .post-row {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 15px 5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15); /* 연한 밑줄 */
+            cursor: pointer;
+        }
+        .post-row:last-child {
+            border-bottom: none;
+        }
+
+</style>
+</head>
+<body>
+
+    <h1>커뮤니티</h1>
+
+    <div class="community-container">
+        
+        <div class="board-box">
+            <div class="board-title">🔥 인기글</div>
+            
+            <div class="post-row">
+                <span class="post-title">오늘 비트코인 역대급 상승세네요 ㄷㄷ</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 128</span>
+                    <span>👁️ 3.1k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">이더리움 단기 전망 및 차트 분석해 드립니다.</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 94</span>
+                    <span>👁️ 2.5k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">코인 7년차 틀딱이 전하는 뉴비 필수 팁 3가지</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 85</span>
+                    <span>👁️ 1.9k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">미국 금리 발표 일정 및 시장 영향 총정리</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 73</span>
+                    <span>👁️ 2.2k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">선물거래 하다가 한강 갈 뻔한 썰 푼다</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 62</span>
+                    <span>👁️ 4.0k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">알트코인 불장은 도대체 언제 오는 건가요?</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 51</span>
+                    <span>👁️ 1.5k</span>
+                </span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">워렌 버핏이 가상자산을 끝까지 반대하는 이유</span>
+                <span class="post-meta">
+                    <span class="like-count">👍 49</span>
+                    <span>👁️ 1.2k</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="board-box">
+            <div class="board-title">📝 최신글</div>
+            
+            <div class="post-row">
+                <span class="post-title">방금 솔라나 풀매수하신 분 계신가요?</span>
+                <span class="post-meta"><span>방금 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">리플 승소 결과 찌라시 도는 거 진짜임?</span>
+                <span class="post-meta"><span>3분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">오늘 밤 미국 경제 지표 발표 시간 체크하세요</span>
+                <span class="post-meta"><span>5분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">형들 업비트 서버 나만 안 됨??</span>
+                <span class="post-meta"><span>12분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">도지코인 화성 갈 기미가 안 보이네 머스크 개새</span>
+                <span class="post-meta"><span>18분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">바이낸스 가입 질문 받아주실 고수 구합니다</span>
+                <span class="post-meta"><span>25분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">치킨 먹고 싶어서 5만원만 벌고 튑니다 개꿀</span>
+                <span class="post-meta"><span>30분 전</span></span>
+            </div>
+            <div class="post-row">
+                <span class="post-title">이번 주 횡보 흐름 길어질 것 같네요 다들 대피</span>
+                <span class="post-meta"><span>45분 전</span></span>
+            </div>
+        </div>
+
+    </div> </body>
+</html>
