@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<style>
+    body {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 10px 40px; /* ⚠️ 오타를 완전히 지워두었습니다! */          
+    }
+    .header-bar {
+        display: flex;
+        align-items: baseline; 
+        gap: 30px;             
+        margin-bottom: 40px;   
+    }
+    .market-container {
+        background-color: #b0b5bc; /* 이미지 속 은은한 밝은 회색 배경 */
+        padding: 20px;             /* 박스 내부의 넉넉한 여백 */
+        border-radius: 12px;       /* 모서리를 부드럽게 깎음 */
+        min-height: 600px;         /* 화면 아래쪽으로 길게 늘려주는 최소 높이 설정 */
+        
+        display: flex;
+        flex-direction: column;    /* 이 박스 안에 들어올 요소들을 위에서 아래로 쌓음 */
+        gap: 40px;                 /* 내부에 들어올 요소들 사이의 간격 */
+    }
+    .columns-wrapper {
+        display: flex;       /* 👈 좌우로 나란히 서라! */
+        gap: 30px;           /* 👈 왼쪽 박스와 오른쪽 박스 사이의 간격 */
+    }
+    .left-box {
+        background-color: #1a1b1e; /* 어두운 검회색 박스 */
+        flex: 1;                   /* 👈 반반씩 똑같이 나눠 가지라는 마법의 명령어 */
+        padding: 15px 30px 30px 30px;
+        border-radius: 8px;
+        min-height: 300px;         /* 밑으로 길게 늘리기 */
+    }
+    /* 💡 [핵심 추가] 오른쪽 박스 스타일 */
+    .right-box {
+        background-color: #1a1b1e; /* 어두운 검회색 박스 */
+        flex: 1;                   /* 👈 반반씩 똑같이 나눠 가지라는 마법의 명령어 */
+        padding: 15px 30px 30px 30px;
+        border-radius: 8px;
+        min-height: 300px;         /* 밑으로 길게 늘리기 */
+    }
+    .market-chart-img {
+        width: 100%;         /* ⭐ 검은 상자 가로 크기에 무조건 100% 맞춤 */
+        height: 300px;       /* 위아래 높이를 220px로 고정 (원하는 대로 조절 가능) */
+        
+        /* 💡 핵심: 이미지를 강제로 늘리거나 압축해서 양옆을 비우는 게 아니라, 
+           지정한 높이(220px)에 맞춰 꽉 차게 잘라내서(Crop) 배치합니다. */
+        object-fit: cover;   
+        
+        border-radius: 4px;
+        margin-top: 15px;    /* '비트코인' 글씨와의 간격 벌리기 */
+        display: block;
+    }
+    /* 🔍 검색창을 감싸는 바구니 (가운데 정렬용) */
+    .search-wrapper {
+        display: flex;
+        justify-content: center;   /* 👈 핵심: 자식인 검색창을 가로 기준 정중앙으로 배치합니다 */
+        width: 100%;
+        margin-top: 10px;          /* 위쪽 차트 박스와의 간격을 살짝 벌려줍니다 */
+    }
+
+    /* 실제 검색창 상자 디자인 */
+    .search-bar {
+        background-color: #1a1b1e; /* 스케치와 동일한 어두운 검회색 */
+        color: #ffffff;            /* 검색창에 입력할 글자 색상 (흰색) */
+        border: none;              /* 브라우저가 기본으로 만드는 못생긴 테두리선 제거 */
+        
+        width: 50%;                /* 💡 스케치처럼 양옆이 적당히 슬림하도록 너비를 50%로 설정 */
+        height: 50px;
+        padding: 14px 20px;        /* 위아래, 좌우 안쪽 여백을 주어 뚱뚱하고 보기 좋게 만듦 */
+        
+        font-size: 30px;
+        font-weight: bold;
+        text-align: center;        /* 안의 글씨("코인 검색창")를 정중앙에 정렬 */
+        border-radius: 6px;        /* 모서리를 부드럽게 깎음 */
+        outline: none;             /* 검색창 클릭했을 때 생기는 파란색 테두리 방지 */
+    }
+
+    /* 검색창 안내 글씨(placeholder) 색상 설정 */
+    .search-bar::placeholder {
+        color: #9095a0;            /* 은은한 회색으로 설정 */
+    }
+    /* 📊 맨 아래 큰 상위 코인들 박스 전체 디자인 */
+    .main-list-box {
+        background-color: #1a1b1e; /* 상단 차트 박스들과 톤앤매너를 맞춘 검회색 */
+        padding: 35px 40px;        /* 박스 안쪽 여백을 넉넉히 줌 */
+        border-radius: 8px;
+        min-height: 300px;         /* 밑으로 길게 늘려주는 최소 높이 */
+        box-sizing: border-box;
+    }
+
+    /* 박스 내부 제목 스타일 */
+    .main-list-box h2 {
+        font-size: 26px;
+        font-weight: bold;
+        margin-top: 0;
+        margin-bottom: 30px;
+        text-align: left;          /* 제목은 왼쪽 정렬 */
+    }
+
+    /* ⭐ 핵심 정렬: 코인 목록 한 줄을 가로로 정렬하고 양 끝으로 찢는 마법 */
+    .market-coin-row {
+        display: flex;
+        justify-content: space-between; /* 👈 좌측 이름과 우측 가격을 양 끝단으로 밀어붙임 */
+        align-items: center;            /* 위아래 높이 정중앙 맞춤 */
+        padding: 20px 10px;             /* 목록 간의 상하 간격을 도톰하게 줌 */
+        border-bottom: 1px solid #2c2d31; /* 줄과 줄 사이에 은은한 구분선 추가 */
+    }
+
+    /* 마지막 목록 줄은 밑줄을 지워주는 디테일 */
+    .market-coin-row:last-child {
+        border-bottom: none;
+    }
+
+    /* 코인 이름과 가격 글씨 크기 조정 */
+    .coin-name, .coin-price {
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;           /* 아이콘과 글자 사이의 간격 */
+    }
+    .coin-price {
+        color: #ff3b30; /* 가격은 포인트가 되도록 살짝 붉은색 배치 (원하면 흰색 #ffffff 변경 가능) */
+    }
+    .coin-icon {
+        width: 24px;         /* 아이콘 가로 크기 (이모지랑 비슷한 아담한 크기) */
+        height: 24px;        /* 세로 크기 */
+        object-fit: contain; /* 이미지 비율 유지 */
+        border-radius: 50%;  /* 아이콘이 네모나면 둥글게 깎아주는 옵션 (선택) */
+    }
+</style>
+<body>
+
+    <div class="header-bar">
+        <h1>마켓</h1>
+    </div>
+
+    <div class="market-container">
+        
+        <div class="columns-wrapper">
+            
+            <div class="left-box">
+                <h3>비트코인</h3>
+                <img src="img/bitchart.png" alt="비트코인 차트" class="market-chart-img">
+            </div>
+
+            <div class="right-box">
+                <h3>이더리움</h3>
+                <img src="img/ethchart.png" alt="비트코인 차트" class="market-chart-img">
+            </div>
+
+        </div> 
+    
+        <div class="search-wrapper">
+            <input type="text" class="search-bar" placeholder="코인 검색창">
+        </div>
+
+        <div class="main-list-box">
+            <h2>상위 코인들 (가격, 거래대금)</h2>
+            
+            <div class="market-coin-row">
+                <span class="coin-name"><img src="img/bitcoin.png"  class="coin-icon"> 비트코인 (BTC)</span>
+                <span class="coin-price">95,450,000 원</span>
+            </div>
+            
+            <div class="market-coin-row">
+                <span class="coin-name"><img src="img/ether.jpg"  class="coin-icon"> 이더리움 (ETH)</span>
+                <span class="coin-price">4,820,000 원</span>
+            </div>
+            
+            <div class="market-coin-row">
+                <span class="coin-name"><img src="img/Solana.png" class="coin-icon"> 솔라나 (SOL)</span>
+                <span class="coin-price">210,000 원</span>
+            </div>
+
+            <div class="market-coin-row">
+                <span class="coin-name"><img src="img/XRP.jpg" class="coin-icon"> 리플 (XRP)</span>
+                <span class="coin-price">850 원</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
