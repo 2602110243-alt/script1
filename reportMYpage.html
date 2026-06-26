@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>MY페이지</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 40px;
+            font-family: sans-serif;
+        }
+
+        /* 대제목 스타일 */
+        h1 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        /* 📦 전체 회색 박스 */
+        .mypage-container {
+            background-color: #b0b5bc; 
+            color: #ffffff;            
+            border-radius: 12px;
+            padding: 40px;
+            box-sizing: border-box;
+            min-height: 800px;         
+            
+            display: flex;
+            flex-direction: column;    
+            gap: 40px;                 
+        }
+
+        /* 👤 상단 프로필 영역 바구니 */
+        .profile-section {
+            display: flex;
+            align-items: center;       
+            justify-content: space-between; 
+            width: 100%;
+        }
+
+        /* 프로필 사진 + 닉네임 묶음 */
+        .profile-left {
+            display: flex;
+            align-items: center;       
+            gap: 50px;                 
+        }
+
+        /* ⚪ 원형 프로필 사진 */
+        .profile-circle {
+            width: 90px;
+            height: 90px;
+            background-color: #1a1b1e; 
+            border-radius: 50%;        
+        }
+
+        /* 닉네임 표시 상자 */
+        .nickname-box {
+            background-color: #1a1b1e;
+            color: #ffffff;
+            padding: 20px 60px;       
+            min-width: 400px;
+            font-size: 25px;          
+            font-weight: bold;
+            border-radius: 6px;       
+            text-align: center;
+        }
+
+        /* 🖱️ [프로필 수정] 기본 스타일 (검은색) */
+        .profile-edit-btn {
+            color: #000000 !important; /* 다른 스타일보다 우선순위를 높임 */
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;           /* 마우스 올리면 손가락 모양으로 변경 */
+            transition: all 0.2s ease; /* 0.2초 동안 부드럽게 애니메이션 적용 */
+        }
+
+        /* 🔥 [효과] 프로필 수정에 마우스 올렸을 때 흰색으로 변경 + 밑줄 추가 */
+        .profile-edit-btn:hover {
+            color: #ffffff !important;
+        }
+
+        /* ⬛ 하단 '내가 쓴 글' 검은색 박스 */
+        .my-posts-box {
+            background-color: #1a1b1e; 
+            border-radius: 8px;
+            padding: 40px;
+            flex: 1;                   
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* '내가 쓴 글' 타이틀 바구니 */
+        .posts-header {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .posts-main-title {
+            font-size: 45px;          
+            font-weight: bold;
+        }
+
+        /* 우측 수정 / 삭제 버튼 묶음 */
+        .posts-actions {
+            display: flex;
+            gap: 20px;                 
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* 🖱️ [수정], [삭제] 버튼 기본 스타일 (흰색) */
+        .action-btn {
+            cursor: pointer;           /* 마우스 올리면 손가락 모양으로 변경 */
+            color: #ffffff !important;
+            transition: all 0.2s ease; 
+        }
+
+        /* 🔥 [효과] 수정, 삭제 버튼에 마우스 올렸을 때 주황색 계열로 확실하게 변경 */
+        .action-btn:hover {
+            color: #ff9f43 !important; /* 눈에 확실히 띄는 예쁜 주황색으로 변경 */
+        }
+
+        /* 📝 실제 쓴 글 목록 리스트 스타일 */
+        .my-post-item {
+            font-size: 18px;
+            padding: 15px 10px;
+            border-bottom: 1px solid #2c2d31;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MY페이지</h1>
+
+    <div class="mypage-container">
+        
+        <div class="profile-section">
+            <div class="profile-left">
+                <div class="profile-circle"></div>
+                <div class="nickname-box">닉네임</div>
+            </div>
+            <div class="profile-edit-btn">프로필 수정</div>
+        </div>
+
+        <div class="my-posts-box">
+            <div class="posts-header">
+                <div class="posts-main-title">내가 쓴 글</div>
+                <div class="posts-actions">
+                    <span class="action-btn">수정</span>
+                    <span class="action-btn">삭제</span>
+                </div>
+            </div>
+
+            <div class="my-post-item">📄 오늘 비트코인 분석글 올렸던 사람입니다.</div>
+            <div class="my-post-item">📄 솔라나 이 타이밍에 들어가는 거 맞나요?</div>
+            <div class="my-post-item">📄 커뮤니티 게시판 규칙 필독 부탁드립니다.</div>
+        </div>
+
+    </div> 
+</body>
+</html>
